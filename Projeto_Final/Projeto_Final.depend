@@ -1,0 +1,27 @@
+# depslib dependency file v1.0
+1701806728 source:c:\users\joão ruffino\documents\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Lib.h"
+
+1701806705 c:\users\joão ruffino\documents\projeto_final\lib.h
+
+1701806705 source:c:\users\joão ruffino\documents\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	"Lib.h"
+
+1701818045 source:c:\users\aluno\downloads\projeto-final-c-main\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701807137 c:\users\aluno\downloads\projeto-final-c-main\projeto_final\lib.h
+
+1701817333 source:c:\users\aluno\downloads\projeto-final-c-main\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
