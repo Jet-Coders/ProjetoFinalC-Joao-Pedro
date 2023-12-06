@@ -1,3 +1,6 @@
+#include <stdio.h>
+#include <stdlib.h>
+
 typedef struct cliente{
     int codigo;
     char nome[100];
@@ -11,7 +14,8 @@ typedef struct cliente{
 typedef struct elemento* Lista;
 
 Lista *criaLista();
-
+char *strupper(char *str);
+int deletaGeral(Lista *li, int codigo);
 void insere_lista_ordenada(Lista *li);
 void relatorioTotal(Lista *li);
 void consultaCodigo(Lista *li);

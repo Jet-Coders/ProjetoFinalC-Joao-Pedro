@@ -4,15 +4,12 @@
 #include "Lib.h"
 
 
-int main()
-{
+int main(){
     Lista *li;
     li = criaLista();
-    char resp = 'Y';
     int escolha;
 
-
-    while(resp == 'Y' || resp == 'y') {
+    while(escolha != 7) {
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tMENU - CLIENTES");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");

@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <conio.h>
 #include "Lib.h"
 
 typedef struct elemento{
@@ -21,7 +20,7 @@ Lista *criaLista(){
 void limparTerminal() {
     printf("\n\n\tPressione Enter para continuar...");
     getchar();
-    system("cls");
+    system("cls || clear");
 }
 
 CLIENTE pegaDados(){
@@ -89,7 +88,7 @@ void insere_lista_ordenada(Lista *li){
         result = 0;
     }
     no->dados = pegaDados();
-    //Fazer verificação de codigos iguais!!!!
+    //Fazer verificaï¿½ï¿½o de codigos iguais!!!!
     if(listaVazia(li)){
         no->prox = (*li);
         *li = no;
@@ -224,7 +223,7 @@ void consultaNome(Lista *li){
         printf("\n\n\tInsira o Nome do cliente desejado: ");
         fgets(nome, sizeof(nome), stdin);
         fflush(stdin);
-        strupr(nome);
+        strupper(nome);
         result = 0;
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
@@ -232,7 +231,7 @@ void consultaNome(Lista *li){
     ELEM *no = *li;
     while(no != NULL){
         strcpy(aux, no->dados.nome);
-        strupr(aux);
+        strupper(aux);
         if(strcmp(aux, nome) == 0){
             exibeCliente(no->dados);
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -305,7 +304,7 @@ void deletaCliente(Lista *li){
     int codigo, x;
     char resp;
 
-    //Não Está pegando erros!!!
+    //Nï¿½o Estï¿½ pegando erros!!!
     if(*li == NULL){
         result = 0;
     }
@@ -369,4 +368,13 @@ int deletaGeral(Lista *li, int codigo){
         }
         free(no);
         return 1;
+}
+
+char *strupper(char *str){
+    char *ptr = str;
+    while (*ptr != '\0') {
+        *ptr = toupper((unsigned char)*ptr);
+        ptr++;
+    }
+    return str;
 }
