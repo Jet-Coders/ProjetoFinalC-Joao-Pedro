@@ -17,3 +17,5 @@ void relatorioTotal(Lista *li);
 void consultaCodigo(Lista *li);
 void consultaNome(Lista *li);
 void deletaCliente(Lista *li);
+void editaContato(Lista *li);
+void limparTerminal();

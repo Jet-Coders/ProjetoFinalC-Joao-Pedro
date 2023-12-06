@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <conio.h>
 #include "Lib.h"
 
 typedef struct elemento{
@@ -18,6 +19,8 @@ Lista *criaLista(){
 }
 
 void limparTerminal() {
+    printf("\n\n\tPressione Enter para continuar...");
+    getchar();
     system("cls");
 }
 
@@ -61,9 +64,6 @@ CLIENTE pegaDados(){
 
     printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
-    limparTerminal();
-
-
     return no;
 }
 
@@ -89,6 +89,7 @@ void insere_lista_ordenada(Lista *li){
         result = 0;
     }
     no->dados = pegaDados();
+    //Fazer verificação de codigos iguais!!!!
     if(listaVazia(li)){
         no->prox = (*li);
         *li = no;
@@ -110,13 +111,13 @@ void insere_lista_ordenada(Lista *li){
     }
 
     if(result == 1){
-        printf("\n\tInserido ordenadamente com sucesso!");
+        printf("\n\n\tInserido ordenadamente com sucesso!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }else{
-        printf("\n\tNao foi possivel inserir ordenamente");
-    }
+        printf("\n\n\tNao foi possivel inserir ordenamente");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
-    printf("\n\n\tPressione Enter para continuar...");
-    getchar();
+    }
 
     limparTerminal();
 
@@ -127,23 +128,19 @@ void exibeCliente(CLIENTE dados){
 
     printf("\n\n\tCodigo: %d", dados.codigo);
     printf("\n\n\tNome: %s", dados.nome);
-    printf("\n\n\tEmpresa: %s", dados.empresa);
-    printf("\n\n\tDepartamento: %s", dados.departamento);
-    printf("\n\n\tTelefone: %s", dados.telefone);
-    printf("\n\n\tCelular: %s", dados.celular);
-    printf("\n\n\tEmail: %s", dados.email);
-
-
-
-
+    printf("\n\tEmpresa: %s", dados.empresa);
+    printf("\n\tDepartamento: %s", dados.departamento);
+    printf("\n\tTelefone: %s", dados.telefone);
+    printf("\n\tCelular: %s", dados.celular);
+    printf("\n\tEmail: %s", dados.email);
 }
 
 void relatorioTotal(Lista *li){
     int result = 1;
-    if(li == NULL){
+
+    if(*li == NULL){
         result = 0;
     }
-
     if(result == 1){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tRELATORIO TOTAL");
@@ -159,11 +156,9 @@ void relatorioTotal(Lista *li){
         }
     }else{
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-        printf("Não foi possivel listar os clientes");
-        printf("\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tNao foi possivel listar os clientes");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
-    printf("\n\n\tPressione Enter para continuar...");
-    getchar();
     limparTerminal();
 
 }
@@ -193,15 +188,19 @@ void consultaCodigo(Lista *li){
     }
 
     if(no == NULL){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tCodigo nao encontrado!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+
         result = 0;
     }else{
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         exibeCliente(no->dados);
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+
     }
 
-    //printf("\n\n\tPressione Enter para continuar...");
-    //getchar();
-    //limparTerminal();
+    limparTerminal();
 
 
 }
@@ -246,23 +245,21 @@ void consultaNome(Lista *li){
 
     if(no == NULL && result != 1){
         printf("\n\n\tNome nao encontrado!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+
         result = 0;
     }
 
-    printf("\n\n\tPressione Enter para continuar...");
-    getchar();
     limparTerminal();
 }
 
 void editaContato(Lista *li){
 
-    //INCOMPLETA
-
     int result = 1;
     int codigo;
     ELEM *no = *li;
 
-    if(li == NULL){
+    if(*li == NULL){
         result = 0;
     }
 
@@ -273,7 +270,6 @@ void editaContato(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tInsira o Codigo do cliente desejado:");
         scanf("%d", &codigo);
-        fflush(stdin);
     }
 
         while(no != NULL && no->dados.codigo != codigo){
@@ -281,16 +277,20 @@ void editaContato(Lista *li){
     }
 
     if(no == NULL){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tCodigo nao encontrado!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         result = 0;
     }else{
         exibeCliente(no->dados);
         char resp;
-        printf("Tem certeza que deseja alterar os dados do cliente?(Y/N)");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tTem certeza que deseja alterar os dados do cliente?(Y/N)");
         scanf(" %c", &resp);
         if(resp == 'Y' || resp == 'y'){
             deletaGeral(li, codigo);
-            //criar o novo
+            insere_lista_ordenada(li);
+            result = 1;
         }
 
     }
@@ -302,10 +302,11 @@ void editaContato(Lista *li){
 void deletaCliente(Lista *li){
 
     int result = 1;
-    int codigo;
+    int codigo, x;
     char resp;
 
-    if(li == NULL){
+    //Não Está pegando erros!!!
+    if(*li == NULL){
         result = 0;
     }
 
@@ -316,23 +317,35 @@ void deletaCliente(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tInsira o Codigo do cliente desejado:");
         scanf("%d", &codigo);
-        fflush(stdin);
+
+
+        printf("\n\n\tTem certeza que deseja excluir o cliente?(Y/N)");
+        scanf(" %c", &resp);
+        if(resp == 'Y' || resp == 'y'){
+        x = deletaGeral(li, codigo);
+            if(x == 1){
+                printf("\n\n\tCliente deletado com sucesso...");
+            }else{
+                printf("\n\n\tErro ao deletar cliente...");
+
+            }
+        }else{
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tCliente nao deletado...");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        }
+    }
+    else{
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tErro ao deletar cliente...");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        limparTerminal();
+
     }
 
-    printf("\n\n\tTem certeza que deseja excluir o cliente?(Y/N)");
-    scanf(" %c", &resp);
-    if(resp == 'Y' || resp == 'y'){
-        deletaGeral(li, codigo);
-        printf("\n\n\tCliente deletado com sucesso...");
-
-        }
-    printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-    printf("\n\n\tPressione Enter para continuar...");
-    getchar();
-    limparTerminal();
 }
 
-void deletaGeral(Lista *li, int codigo){
+int deletaGeral(Lista *li, int codigo){
 
         ELEM *ant, *no = *li;
         while(no != NULL && no->dados.codigo != codigo){
@@ -340,7 +353,11 @@ void deletaGeral(Lista *li, int codigo){
             no = no->prox;
         }
         if(no == NULL){
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
             printf("\n\n\tCliente nao encontrado");
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+            //limparTerminal();
+            return 0;
         }
 
         if(no == *li){
@@ -351,4 +368,5 @@ void deletaGeral(Lista *li, int codigo){
 
         }
         free(no);
+        return 1;
 }

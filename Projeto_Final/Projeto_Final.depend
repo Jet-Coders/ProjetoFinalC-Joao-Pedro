@@ -25,3 +25,18 @@
 	<string.h>
 	"Lib.h"
 
+1701885900 source:c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"Lib.h"
+
+1701883520 c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\lib.h
+
+1701883578 source:c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
