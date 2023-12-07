@@ -7,7 +7,7 @@
 int main(){
     Lista *li;
     li = criaLista();
-    int escolha, mod=0;
+    int escolha, mod;
     char res;
 
     abrirDados(li);
@@ -71,10 +71,12 @@ int main(){
                 }else{
                     printf("\nNao existem alteracoes nos cadastros\n");
                 }
+            default:
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+            printf("\n\n\tEscolha nao valida!!");
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
                 
             break;
         }
-         
-    }
     return 0;
 }

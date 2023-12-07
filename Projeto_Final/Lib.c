@@ -3,7 +3,6 @@
 #include <string.h>
 #include <ctype.h>
 #include "Lib.h"
-
 typedef struct elemento{
     CLIENTE dados;
     struct elemento *prox;
@@ -18,7 +17,7 @@ Lista *criaLista(){
     return li;
 }
 
-void limparTerminal() {
+void limparTerminal(){
     printf("\n\n\tPressione Enter para continuar...");
     getchar();
     system("cls || clear");
@@ -33,34 +32,26 @@ CLIENTE pegaDados(){
 
     printf("\n\tInsira o codigo do cliente: ");
     scanf("%d", &no.codigo);
-    while (getchar() != '\n');
+    fflush(stdin);
 
 
     printf("\n\tDigite o nome do cliente: ");
     fgets(no.nome, sizeof(no.nome), stdin);
-    fflush(stdin);
 
     printf("\n\tDigite a empresa do cliente: ");
     fgets(no.empresa, sizeof(no.empresa), stdin);
-    fflush(stdin);
-
 
     printf("\n\tDigite o departamento do cliente: ");
     fgets(no.departamento, sizeof(no.departamento), stdin);
-    fflush(stdin);
 
     printf("\n\tDigite o telefone do cliente: ");
     fgets(no.telefone, sizeof(no.telefone), stdin);
-    fflush(stdin);
-
 
     printf("\n\tDigite o celular do cliente: ");
     fgets(no.celular, sizeof(no.celular), stdin);
-    fflush(stdin);
 
     printf("\n\tDigite o email do cliente: ");
     fgets(no.email, sizeof(no.email), stdin);
-    fflush(stdin);
 
     printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
@@ -80,20 +71,32 @@ int listaVazia(Lista *li){
 }
 
 void insere_lista_ordenada(Lista *li){
-    int result;
+    int result = 1;
+    ELEM *aux = *li;
+    ELEM *no = (ELEM*) malloc(sizeof(ELEM));
+
     if(li == NULL){
         result = 0;
     }
-    ELEM *no = (ELEM*) malloc(sizeof(ELEM));
     if(no == NULL){
         result = 0;
     }
     no->dados = pegaDados();
-    //Fazer verifica��o de codigos iguais!!!!
+
+    while(aux != NULL){
+        if(aux->dados.codigo == no->dados.codigo){
+        printf("\n\n\tJa existe um cliente com esse codigo!!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        result = 0;
+        }
+        aux = aux->prox;
+    }
+
+    if(result == 1){
+
     if(listaVazia(li)){
         no->prox = (*li);
         *li = no;
-        result = 1;
     }else{
         ELEM *ant, *atual = *li;
         while(atual != NULL && atual->dados.codigo < no->dados.codigo){
@@ -107,10 +110,7 @@ void insere_lista_ordenada(Lista *li){
             no->prox = ant->prox;
             ant->prox = no;
         }
-        result = 1;
     }
-    
-
     if(result == 1){
         printf("\n\n\tInserido ordenadamente com sucesso!");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -119,10 +119,10 @@ void insere_lista_ordenada(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
     }
-
     limparTerminal();
 
 
+}
 }
 
 void exibeCliente(CLIENTE dados){
@@ -208,7 +208,6 @@ void consultaCodigo(Lista *li){
 
 void consultaNome(Lista *li){
 
-
     int result = 1;
     char nome[100];
     char aux[100];
@@ -218,7 +217,6 @@ void consultaNome(Lista *li){
     }
 
     if(result == 1){
-
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tRELATORIO POR NOME");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -234,15 +232,17 @@ void consultaNome(Lista *li){
     while(no != NULL){
         strcpy(aux, no->dados.nome);
         strupper(aux);
-        if(strcmp(aux, nome) == 0){
+
+        if(strstr(aux, nome)){
             exibeCliente(no->dados);
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-
             result = 1;
         }
         no = no->prox;
+        strcpy(aux, "");
 
-    }
+    
+}
 
     if(no == NULL && result != 1){
         printf("\n\n\tNome nao encontrado!");
@@ -292,10 +292,13 @@ void editaContato(Lista *li){
             deletaGeral(li, codigo);
             insere_lista_ordenada(li);
             result = 1;
+        }else{
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+            printf("\n\n\tCliente nao editado...");
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         }
 
     }
-
 
 
 }
@@ -324,9 +327,13 @@ void deletaCliente(Lista *li){
         if(resp == 'Y' || resp == 'y'){
         x = deletaGeral(li, codigo);
             if(x == 1){
+                printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
                 printf("\n\n\tCliente deletado com sucesso...");
+                printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
             }else{
                 printf("\n\n\tErro ao deletar cliente...");
+                printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+
 
             }
         }else{
@@ -339,9 +346,10 @@ void deletaCliente(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tErro ao deletar cliente...");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-        limparTerminal();
 
     }
+    fflush(stdin);
+    limparTerminal();
 
 }
 
@@ -356,7 +364,6 @@ int deletaGeral(Lista *li, int codigo){
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
             printf("\n\n\tCliente nao encontrado");
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-            //limparTerminal();
             return 0;
         }
 
@@ -393,12 +400,16 @@ int tamanhoLista(Lista *li){
     return acum;
 }
 
+
 void salvaDados(Lista *li){
+    int result = 1;
     FILE *arq = fopen("data.bin", "w+b");
     if(arq == NULL){
-        printf("Erro na abertura");
-        getchar();
-        exit(1);
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tErro ao salvar dados!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        limparTerminal();
+        result = 0;
     }
     ELEM *cliente = *li;
     while(cliente != NULL){
@@ -406,49 +417,62 @@ void salvaDados(Lista *li){
         cliente = cliente->prox;
     }
     fclose(arq);
+    if(result == 1){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tDados salvos com sucesso!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        limparTerminal();
+    }
 
 }
 
 void abrirDados(Lista *li){
-    int result;
-    FILE *arq = fopen("data.bin", "w+b");
-
+    int result,x = 0;
+    FILE *arq = fopen("data.bin", "rb");
     if(arq == NULL){
-        printf("Erro na abertura");
-        getchar();
+       printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tErro na abertura dos dados!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        limparTerminal();
         exit(1);
     }
+        ELEM cliente;
 
-        while(!feof(arq)){
-            ELEM *no = (ELEM*) malloc(sizeof(ELEM));
-            if(no == NULL)
-            {
-                result =0;
+        while (fread(&cliente, sizeof(ELEM), 1, arq) == 1) {
+            ELEM *no = (ELEM *)malloc(sizeof(ELEM));
+            if (no == NULL) {
+                result = 0;
             }
-            fread(no,sizeof(ELEM),1,arq);
-
-            if(listaVazia(li)){
-                no->prox = (*li);
+            *no = cliente;
+            no->prox = NULL;
+            if (listaVazia(li)) {
                 *li = no;
-                result = 1;
-            }else{
+            } else {
                 ELEM *ant, *atual = *li;
-                while(atual != NULL && atual->dados.codigo < no->dados.codigo){
+                while (atual != NULL && atual->dados.codigo < no->dados.codigo) {
                     ant = atual;
                     atual = atual->prox;
                 }
-                if(atual == *li){
-                    no->prox = (*li);
+                if (atual == *li) {
+                    no->prox = *li;
                     *li = no;
-                }else{
+                    result = 1;
+                } else {
                     no->prox = ant->prox;
                     ant->prox = no;
+                    result = 1;
                 }
-                result = 1;
             }
         }
-    fclose(arq);
-    }
-    
-    
 
+        fclose(arq);
+
+
+    if(result == 1){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tDados inseridos com sucesso");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+    }
+    fclose(arq);
+
+}

@@ -1,9 +1,7 @@
 #ifndef lib_h
 #define lib_h
-
-    #include <stdio.h>
-    #include <stdlib.h>
-
+#include <stdio.h>
+#include <stdlib.h>
     typedef struct cliente{
         int codigo;
         char nome[100];
