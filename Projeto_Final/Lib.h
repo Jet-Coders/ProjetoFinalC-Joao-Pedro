@@ -24,4 +24,4 @@ void deletaCliente(Lista *li);
 void editaContato(Lista *li);
 void limparTerminal();
 void salvaDados(Lista *li);
-void puxaDados(Lista *li);
+void abrirDados(Lista *li);

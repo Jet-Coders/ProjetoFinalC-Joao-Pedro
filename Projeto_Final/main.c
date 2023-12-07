@@ -8,11 +8,12 @@ int main(){
     Lista *li;
     li = criaLista();
 
-    puxaDados(li);
+    abrirDados(li);
 
     int escolha;
+    int menu = 1;
 
-    while(escolha != 8) {
+    while(menu == 1) {
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tMENU - CLIENTES");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -51,10 +52,12 @@ int main(){
             break;
         case 7:
             salvaDados(li);
-            escolha = 8;
+            menu = 0;
             break;
         default:
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
             printf("\n\n\tEscolha nao valida!!");
+            printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
     }
     return 0;

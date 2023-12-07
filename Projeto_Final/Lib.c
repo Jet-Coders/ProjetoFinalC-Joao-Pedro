@@ -299,8 +299,6 @@ void editaContato(Lista *li){
 
     }
 
-    fflush(stdin);
-    limparTerminal();
 
 }
 
@@ -401,80 +399,87 @@ int tamanhoLista(Lista *li){
     return acum;
 }
 
+
 void salvaDados(Lista *li){
-    FILE *arq = fopen("data.txt", "wb");
+    int result = 1;
+    FILE *arq = fopen("data.bin", "w+b");
     if(arq == NULL){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tErro ao salvar dados!");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         limparTerminal();
+        result = 0;
     }
     ELEM *cliente = *li;
     while(cliente != NULL){
-        fwrite(cliente, sizeof(ELEM), 1, arq);
+        fwrite(cliente,sizeof(ELEM),1,arq);
         cliente = cliente->prox;
     }
     fclose(arq);
+    if(result == 1){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        printf("\n\n\tDados salvos com sucesso!");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+        limparTerminal();
+    }
+
 }
 
-void puxaDados(Lista *li){
-    FILE *arq = fopen("data.txt", "rb");
-    int result = 1;
-    ELEM *aux = *li;
-
+void abrirDados(Lista *li){
+    int result,x = 0;
+    FILE *arq = fopen("data.bin", "rb");
     if(arq == NULL){
-        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
+       printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tErro na abertura dos dados!");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-        getchar();
+        limparTerminal();
         exit(1);
     }
+        ELEM dados;
 
-    while(fread(arq, sizeof(ELEM), 1, arq) == 1){
-        ELEM *no = (ELEM*) malloc(sizeof(ELEM));
-        if(no == NULL){
-        result = 0;
-        }
-
-        fread(no, sizeof(ELEM), 1, arq);
-
-        while(aux != NULL){
-        if(aux->dados.codigo == no->dados.codigo){
-        printf("\n\n\tJa existe um cliente com esse codigo!!");
-        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-        result = 0;
-        }
-        aux = aux->prox;
-        }
-
-        if(result == 1){
-            if(listaVazia(li)){
-            no->prox = (*li);
-            *li = no;
-            }else{
-            ELEM *ant, *atual = *li;
-            while(atual != NULL && atual->dados.codigo < no->dados.codigo){
-                ant = atual;
-                atual = atual->prox;
+        while (fread(&dados, sizeof(ELEM), 1, arq) == 1) {
+            ELEM *no = (ELEM *)malloc(sizeof(ELEM));
+            if (no == NULL) {
+                result = 0;
             }
-            if(atual == *li){
-                no->prox = (*li);
+
+            *no = dados;
+
+            no->prox = NULL;
+
+            if (listaVazia(li)) {
                 *li = no;
-            }else{
-                no->prox = ant->prox;
-                ant->prox = no;
-            }
-            }
-
-            }else{
-            result = 0;
+            } else {
+                ELEM *ant, *atual = *li;
+                while (atual != NULL && atual->dados.codigo < no->dados.codigo) {
+                    ant = atual;
+                    atual = atual->prox;
+                }
+                if (atual == *li) {
+                    no->prox = *li;
+                    *li = no;
+                    result = 1;
+                } else {
+                    no->prox = ant->prox;
+                    ant->prox = no;
+                    result = 1;
+                }
             }
         }
+
+        fclose(arq);
+
+
     if(result == 1){
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tDados inseridos com sucesso");
+        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
     }
     fclose(arq);
+
 }
+
+
 
 
 
