@@ -109,6 +109,7 @@ void insere_lista_ordenada(Lista *li){
         }
         result = 1;
     }
+    
 
     if(result == 1){
         printf("\n\n\tInserido ordenadamente com sucesso!");
@@ -405,5 +406,48 @@ void salvaDados(Lista *li){
         fwrite(cliente,sizeof(ELEM),1,arq);
         cliente = cliente->prox;
     }
+    fclose(arq);
+
+}
+
+void abrirDados(Lista *li){
+    int result,x=0;
+    FILE *arq = fopen("data.bin", "rb");
+    if(arq == NULL){
+        printf("Erro na abertura");
+        getchar();
+        exit(1);
+    }
+        while(!feof(arq)){
+            ELEM *no = (ELEM*) malloc(sizeof(ELEM));
+            if(no == NULL)
+            {
+                result =0;
+            }
+            
+            fread(no,sizeof(ELEM),1,arq);
+
+            if(listaVazia(li)){
+                no->prox = (*li);
+                *li = no;
+                result = 1;
+            }else{
+                ELEM *ant, *atual = *li;
+                while(atual != NULL && atual->dados.codigo < no->dados.codigo){
+                    ant = atual;
+                    atual = atual->prox;
+                }
+                if(atual == *li){
+                    no->prox = (*li);
+                    *li = no;
+                }else{
+                    no->prox = ant->prox;
+                    ant->prox = no;
+                }
+                result = 1;
+            }
+        }
+    
+    fclose(arq);
 
 }

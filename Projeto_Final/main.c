@@ -49,6 +49,9 @@ int main(){
         case 7:
             salvaDados(li);
             break;
+        case 8:
+            abrirDados(li);
+            break;
     }
     }
     return 0;
