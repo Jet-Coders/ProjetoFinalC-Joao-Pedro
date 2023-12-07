@@ -47,7 +47,7 @@ int main(){
             deletaCliente(li);
             break;
         case 7:
-            printf("\n\n\tNada aqui ainda!");
+            salvaDados(li);
             break;
     }
     }

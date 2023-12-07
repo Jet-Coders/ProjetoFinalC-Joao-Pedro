@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 #include "Lib.h"
 
 typedef struct elemento{
@@ -377,4 +378,32 @@ char *strupper(char *str){
         ptr++;
     }
     return str;
+}
+
+int tamanhoLista(Lista *li){
+    if(li == NULL){
+        return 0;
+    }
+    int acum;
+    ELEM *no = *li;
+    while(no != NULL){
+        acum++;
+        no = no->prox;
+    }
+    return acum;
+}
+
+void salvaDados(Lista *li){
+    FILE *arq = fopen("data.bin", "w+b");
+    if(arq == NULL){
+        printf("Erro na abertura");
+        getchar();
+        exit(1);
+    }
+    ELEM *cliente = *li;
+    while(cliente != NULL){
+        fwrite(cliente,sizeof(ELEM),1,arq);
+        cliente = cliente->prox;
+    }
+
 }
