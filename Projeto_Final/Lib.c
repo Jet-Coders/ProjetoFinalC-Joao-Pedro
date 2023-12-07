@@ -306,7 +306,6 @@ void deletaCliente(Lista *li){
     int codigo, x;
     char resp;
 
-    //N�o Est� pegando erros!!!
     if(*li == NULL){
         result = 0;
     }
@@ -411,20 +410,21 @@ void salvaDados(Lista *li){
 }
 
 void abrirDados(Lista *li){
-    int result,x=0;
-    FILE *arq = fopen("data.bin", "rb");
+    int result;
+    FILE *arq = fopen("data.bin", "w+b");
+
     if(arq == NULL){
         printf("Erro na abertura");
         getchar();
         exit(1);
     }
+
         while(!feof(arq)){
             ELEM *no = (ELEM*) malloc(sizeof(ELEM));
             if(no == NULL)
             {
                 result =0;
             }
-            
             fread(no,sizeof(ELEM),1,arq);
 
             if(listaVazia(li)){
@@ -447,7 +447,8 @@ void abrirDados(Lista *li){
                 result = 1;
             }
         }
-    
     fclose(arq);
+    }
+    
+    
 
-}
