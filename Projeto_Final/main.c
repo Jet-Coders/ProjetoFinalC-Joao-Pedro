@@ -9,7 +9,6 @@ int main(){
     li = criaLista();
     int escolha, mod;
     char res;
-
     abrirDados(li);
       /*  printf("\n\n\tAbrindo dados armazenados");
         for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
@@ -35,7 +34,6 @@ int main(){
         scanf("%d", &escolha);
        limparTerminal();
 
-        
         switch (escolha) {
             case 1:
                 insere_lista_ordenada(li);
@@ -68,8 +66,10 @@ int main(){
                     }else{
                         printf("\nModificacoes nao salvas.\n");
                     }
+                    break;
                 }else{
                     printf("\nNao existem alteracoes nos cadastros\n");
+                    break;
                 }
             default:
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -78,5 +78,5 @@ int main(){
                 
             break;
         }
-    return 0;
+}
 }

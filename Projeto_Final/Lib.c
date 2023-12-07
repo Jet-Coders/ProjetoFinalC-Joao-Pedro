@@ -121,7 +121,6 @@ void insere_lista_ordenada(Lista *li){
     }
     limparTerminal();
 
-
 }
 }
 
@@ -299,7 +298,6 @@ void editaContato(Lista *li){
         }
 
     }
-
 
 }
 
