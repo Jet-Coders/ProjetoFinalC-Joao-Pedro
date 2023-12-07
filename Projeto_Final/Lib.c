@@ -435,15 +435,15 @@ void abrirDados(Lista *li){
         limparTerminal();
         exit(1);
     }
-        ELEM dados;
+        ELEM cliente;
 
-        while (fread(&dados, sizeof(ELEM), 1, arq) == 1) {
+        while (fread(&cliente, sizeof(ELEM), 1, arq) == 1) {
             ELEM *no = (ELEM *)malloc(sizeof(ELEM));
             if (no == NULL) {
                 result = 0;
             }
 
-            *no = dados;
+            *no = cliente;
 
             no->prox = NULL;
 
