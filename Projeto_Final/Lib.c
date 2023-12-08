@@ -180,7 +180,6 @@ void consultaCodigo(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tInsira o Codigo do cliente desejado:");
         scanf("%d", &codigo);
-        fflush(stdin);
     }
 
         while(no != NULL && no->dados.codigo != codigo){
@@ -199,17 +198,27 @@ void consultaCodigo(Lista *li){
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
 
     }
-
+    
     limparTerminal();
 
 
 }
 
-void consultaNome(Lista *li){
+int buscaNome(Lista *li, const char *nome) {
+    ELEM *atual = *li;
+    while (atual != NULL) {
+        if (strstr(atual->dados.nome, nome) != NULL) {
+            printf("%s\n",atual->dados.nome);
+            
+        }
+        atual = atual->prox;
+    }
+        return 0;
+}
 
+void consultaNome(Lista *li){
     int result = 1;
-    char nome[100];
-    char aux[100];
+    char nome[100],aux[100];
 
     if(li == NULL){
         result = 0;
@@ -220,29 +229,25 @@ void consultaNome(Lista *li){
         printf("\n\n\tRELATORIO POR NOME");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tInsira o Nome do cliente desejado: ");
-        fgets(nome, sizeof(nome), stdin);
-        fflush(stdin);
+        scanf("%[^\n]", nome);
+        getchar();
         strupper(nome);
         result = 0;
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
-
+        
     }
     ELEM *no = *li;
-    while(no != NULL){
+    while(no!= NULL){
         strcpy(aux, no->dados.nome);
         strupper(aux);
-
-        if(strstr(aux, nome)){
+        if(strstr(aux, nome) != NULL){
             exibeCliente(no->dados);
             printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
             result = 1;
         }
         no = no->prox;
-        strcpy(aux, "");
-
-    
-}
-
+    }
+        
     if(no == NULL && result != 1){
         printf("\n\n\tNome nao encontrado!");
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -288,7 +293,7 @@ void editaContato(Lista *li){
         printf("\n\n\tTem certeza que deseja alterar os dados do cliente?(Y/N)");
         scanf(" %c", &resp);
         if(resp == 'Y' || resp == 'y'){
-            deletaGeral(li, codigo);
+            deleteCli(li, codigo);
             insere_lista_ordenada(li);
             result = 1;
         }else{
@@ -301,7 +306,7 @@ void editaContato(Lista *li){
 
 }
 
-void deletaCliente(Lista *li){
+void deleteSelection(Lista *li){
 
     int result = 1;
     int codigo, x;
@@ -323,7 +328,7 @@ void deletaCliente(Lista *li){
         printf("\n\n\tTem certeza que deseja excluir o cliente?(Y/N)");
         scanf(" %c", &resp);
         if(resp == 'Y' || resp == 'y'){
-        x = deletaGeral(li, codigo);
+        x = deleteCli(li, codigo);
             if(x == 1){
                 printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
                 printf("\n\n\tCliente deletado com sucesso...");
@@ -351,7 +356,7 @@ void deletaCliente(Lista *li){
 
 }
 
-int deletaGeral(Lista *li, int codigo){
+int deleteCli(Lista *li, int codigo){
 
         ELEM *ant, *no = *li;
         while(no != NULL && no->dados.codigo != codigo){
@@ -425,7 +430,7 @@ void salvaDados(Lista *li){
 }
 
 void abrirDados(Lista *li){
-    int result,x = 0;
+    int result;
     FILE *arq = fopen("data.bin", "rb");
     if(arq == NULL){
        printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
@@ -474,3 +479,4 @@ void abrirDados(Lista *li){
     fclose(arq);
 
 }
+

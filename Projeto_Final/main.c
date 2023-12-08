@@ -8,14 +8,16 @@ int main(){
     Lista *li;
     li = criaLista();
     int escolha, mod;
-    char res;
-    abrirDados(li);
-      /*  printf("\n\n\tAbrindo dados armazenados");
+    char res,*nome;
+    int x;
+    
+     printf("\n\n\tAbrindo dados armazenados");
         for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
             system("sleep 01"); // pausa de 1 segundo
             printf("."); // escrever 1 "." na tela
             fflush(stdout); // atualizar a tela
-        }*/
+            abrirDados(li);
+        }
     while(escolha != 7) {
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tGRUPO ACME\n\n\tMENU - CLIENTES");
