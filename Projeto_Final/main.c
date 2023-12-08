@@ -16,19 +16,12 @@ int main(){
     int x;
     
      printf("\n\n\tAbrindo dados armazenados");
-    #ifdef _WIN32
+
         for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
-            sleep(1000); // pausa de 1 segundo
+            sleep(1); // pausa de 1 segundo
             printf("."); // escrever 1 "." na tela
             fflush(stdout); // atualizar a tela
         }
-    #else
-       for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
-            system("sleep 01"); // pausa de 1 segundo
-            printf("."); // escrever 1 "." na tela
-            fflush(stdout); // atualizar a tela
-        }
-    #endif
         abrirDados(li);
         
     while(escolha != 7) {

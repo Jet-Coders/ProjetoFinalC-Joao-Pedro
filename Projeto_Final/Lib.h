@@ -1,3 +1,10 @@
+#ifdef _WIN32
+    #include <windows.h>
+    #define sleep(seconds) sleep((seconds) * 1000)
+#else
+    #include <unistd.h>
+    #define usleep(seconds) sleep(seconds)
+#endif
 #ifndef lib_h
 #define lib_h
     #include <stdio.h>
