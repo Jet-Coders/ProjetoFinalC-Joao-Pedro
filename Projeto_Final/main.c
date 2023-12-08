@@ -3,7 +3,11 @@
 #include <string.h>
 #include "Lib.h"
 
-
+#ifdef _WIN32
+    #include <windows.h>
+#else
+    #include <unistd.h>
+#endif
 int main(){
     Lista *li;
     li = criaLista();
@@ -12,12 +16,21 @@ int main(){
     int x;
     
      printf("\n\n\tAbrindo dados armazenados");
+    #ifdef _WIN32
         for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
+            sleep(1000); // pausa de 1 segundo
+            printf("."); // escrever 1 "." na tela
+            fflush(stdout); // atualizar a tela
+        }
+    #else
+       for(int i=0;i < 3; i++){ // abrir um laço de repetição com for
             system("sleep 01"); // pausa de 1 segundo
             printf("."); // escrever 1 "." na tela
             fflush(stdout); // atualizar a tela
-            abrirDados(li);
         }
+    #endif
+        abrirDados(li);
+        
     while(escolha != 7) {
         printf("\n\n\t=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*");
         printf("\n\n\tGRUPO ACME\n\n\tMENU - CLIENTES");
@@ -55,7 +68,7 @@ int main(){
                 mod=1;
                 break;
             case 6:
-                deletaCliente(li);
+                deleteSelection(li);
                 mod=1;
                 break;
             case 7:
