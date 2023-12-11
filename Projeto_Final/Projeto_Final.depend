@@ -1,0 +1,93 @@
+# depslib dependency file v1.0
+1701806728 source:c:\users\joão ruffino\documents\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	"Lib.h"
+
+1701806705 c:\users\joão ruffino\documents\projeto_final\lib.h
+
+1701806705 source:c:\users\joão ruffino\documents\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	"Lib.h"
+
+1701818045 source:c:\users\aluno\downloads\projeto-final-c-main\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701821991 c:\users\aluno\downloads\projeto-final-c-main\projeto_final\lib.h
+
+1701822001 source:c:\users\aluno\downloads\projeto-final-c-main\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701885900 source:c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<conio.h>
+	"Lib.h"
+
+1701883520 c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\lib.h
+
+1701883578 source:c:\users\joão ruffino\documents\projetofinalc-joao-pedro\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701910832 source:c:\users\aluno\documents\projetofinalc-joao-pedro\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701910538 c:\users\aluno\documents\projetofinalc-joao-pedro\projeto_final\lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1701911285 source:c:\users\aluno\documents\projetofinalc-joao-pedro\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701955394 source:c:\users\joão ruffino\downloads\projetofinalc-joao-pedro\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1701953854 c:\users\joão ruffino\downloads\projetofinalc-joao-pedro\projeto_final\lib.h
+	<stdio.h>
+	<stdlib.h>
+
+1701955394 source:c:\users\joão ruffino\downloads\projetofinalc-joao-pedro\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1702063292 source:c:\users\joão ruffino\downloads\projetofinalc-joao-pedro-fix\projeto_final\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"Lib.h"
+
+1702062789 c:\users\joão ruffino\downloads\projetofinalc-joao-pedro-fix\projeto_final\lib.h
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	<unistd.h>
+
+1702063102 source:c:\users\joão ruffino\downloads\projetofinalc-joao-pedro-fix\projeto_final\lib.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<ctype.h>
+	"Lib.h"
+
